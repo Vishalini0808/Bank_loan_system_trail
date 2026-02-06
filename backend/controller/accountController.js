@@ -13,7 +13,7 @@ export const createAccount = async(req,res)=>{
         address
     });
     res.status(201).json({message:"Account created successfully",user:newUser});
-    console.log("user created "+newAccount);
+    console.log("Account created "+newAccount);
 }catch(e){
     console.log(e);
     res.status(500).json({message:"Database Error"});
