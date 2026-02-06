@@ -7,7 +7,8 @@ const schema =  new mongoose.Schema({
     account_number : {type:String,required: true},
     loan_type:{type:String, required:true},
     branch : {type:String,required:true},
-    address : {type:String,required:true}
+    address : {type:String,required:true},
+    status : {type:String,required:true}
 });
 
 export default mongoose.model('accountSchema',schema);

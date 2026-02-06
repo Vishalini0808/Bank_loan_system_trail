@@ -3,7 +3,7 @@ import LoanApplicationModel from "../model/LoanApplicationModel.js";
 export const createLoanApplication = async(req,res)=>{
 
     try{
-    const{name,phone,email,account_number,loan_type,branch,address}=req.body;
+    const{name,phone,email,account_number,loan_type,branch,address,status}=req.body;
     const newLoanApplicationModel = await LoanApplicationModel.create({
         name,
         phone,
@@ -11,7 +11,8 @@ export const createLoanApplication = async(req,res)=>{
         account_number,
         loan_type,
         branch,
-        address
+        address,
+        status
     });
     res.status(201).json({message:"Loan Application created successfully",user:newLoanApplicationModel});
     console.log("New Loan Application created "+newLoanApplicationModel);
