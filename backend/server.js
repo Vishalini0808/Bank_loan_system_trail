@@ -6,6 +6,8 @@ import userRouter from "./routes/userRouter.js";
 import accountRouter from "./routes/AccountRouter.js";
 import loanApplicationRouter from "./routes/LoanApplicationRouter.js";
 import loanRouter from "./routes/loanRouter.js";
+import { verifyToken } from "./middleware/authMiddleware.js";
+import { authorizeRoles } from "./middleware/roleMiddleware.js";
 
 dotenv.config();
 
