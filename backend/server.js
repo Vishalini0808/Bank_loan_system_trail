@@ -19,6 +19,8 @@ app.use('/api/user',userRouter);
 app.use('/api/account',accountRouter);
 app.use('/api/loan_app',loanApplicationRouter);
 app.use('/api/loan',loanRouter);
+app.use("/uploads", express.static("uploads"));
+app.use("/api/file", require("./routes/filerouter.js"));
 
 connectDB();
 
