@@ -12,4 +12,4 @@ const schema =  new mongoose.Schema({
     status : {type:String,required:true}
 });
 
-export default mongoose.model('AccountCreationSchema',schema);
+export default mongoose.model('EMISchema',schema);

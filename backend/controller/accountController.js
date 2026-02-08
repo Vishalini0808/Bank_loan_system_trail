@@ -12,7 +12,7 @@ export const createAccount = async(req,res)=>{
         branch,
         address
     });
-    res.status(201).json({message:"Account created successfully",user:newUser});
+    res.status(201).json({message:"Account created successfully",user:newAccount});
     console.log("Account created "+newAccount);
 }catch(e){
     console.log(e);
