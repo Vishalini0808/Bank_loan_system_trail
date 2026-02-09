@@ -25,25 +25,34 @@ import api from "../../api";
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded shadow w-80">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-mint to-softgreen px-4">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md">
 
-        <h2 className="text-xl font-bold mb-4">Register</h2>
+      <div className="bg-linear-to-r from-teal to-deepblue p-6 text-white rounded-t-2xl">
+      <h1 className="text-2xl font-bold">🏦 SecureBank</h1>
+      <p className="text-sm opacity-90">
+        Open your digital banking account
+      </p>
+    </div>
 
+     <div className="p-6">
+      <h2 className="text-xl font-semibold mb-4 text-navy">
+        Register
+      </h2>
         <input
-        className="border w-full p-2 mb-3"
+        className="input mb-4"
         placeholder="Name"
         onChange={ (e) => setForm ({ ...form, name :e.target.value})}
         />
 
          <input
-        className="border w-full p-2 mb-3"
+        className="input mb-4"
         placeholder="Email"
         onChange={ (e) => setForm ({ ...form, email :e.target.value})}
         />
 
          <input
-        className="border w-full p-2 mb-3"
+        className="input mb-4"
         placeholder="Password"
         type="password"
         onChange={ (e) => setForm ({ ...form, password :e.target.value})}
@@ -51,11 +60,12 @@ import api from "../../api";
 
         <button
         onClick={handleRegister}
-        className="bg-green-600 text-white w-full py-2 rounded"
+        className="btn-primary w-full"
         >
             Register
         </button>
 
+        </div>
       </div>
       </div>
     )

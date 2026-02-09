@@ -9,12 +9,12 @@ const CustomerNavbar = () => {
   };
 
   return (
-    <nav className="bg-linear-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 flex justify-between items-center shadow">
-      <h1 className="font-bold text-xl tracking-wide">
-        💳 Bank Loan Portal
-      </h1>
+   <nav className="bg-linear-to-r from-deepblue to-navy text-white px-8 py-4 flex justify-between items-center shadow-lg">
+  <h1 className="font-bold text-xl tracking-wide">
+    🏦 SecureBank
+  </h1>
 
-      <div className="flex items-center gap-6 text-sm font-medium">
+      <div className="flex gap-6 items-center text-sm text-amber-950">
         <Link to="/customer/dashboard" className="hover:opacity-80">
           Dashboard
         </Link>
@@ -26,7 +26,7 @@ const CustomerNavbar = () => {
         </Link>
         <button
           onClick={logout}
-          className="bg-white text-blue-600 px-4 py-1.5 rounded-full font-semibold hover:bg-gray-100"
+          className="bg-white text-deepblue px-4 py-1.5 rounded-full font-semibold"
         >
           Logout
         </button>

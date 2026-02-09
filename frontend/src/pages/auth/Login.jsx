@@ -20,6 +20,7 @@ const handleLogin = async()=> {
       password
     });
 
+    
 // to store in local storage
 const {token, role} = res.data;
 
@@ -42,18 +43,34 @@ if(role === "CUSTOMER") {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded shadow w-80">
-        <h2 className="text-xl font-bold mb-4">Login</h2>
+    
+   <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-mint to-softgreen px-4">
+  <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
+       
+
+
+        {/* Header */}
+    <div className="bg-linear-to-r from-teal to-deepblue p-6 text-white">
+      <h1 className="text-2xl font-bold">🏦 SecureBank</h1>
+      <p className="text-sm opacity-90">
+        Smart & Secure Loan Management System
+      </p>
+    </div>
+
+
+      <div className="p-6">
+      <h2 className="text-xl font-semibold mb-4 text-navy">
+        Login to your account
+      </h2>
 
         <input 
-        className="border w-full p-2 mb-3" 
+        className="input mb-4" 
         placeholder="Email" 
         onChange={ (e) => setEmail(e.target.value)}
         />
 
         <input 
-        className="border w-full p-2 mb-3" 
+        className="input mb-4" 
         type="password" 
         placeholder="Password" 
         onChange={ (e) => setPassword(e.target.value)}
@@ -61,19 +78,19 @@ if(role === "CUSTOMER") {
 
         <button 
         onClick={handleLogin}
-        className="bg-blue-600 text-white w-full py-2 rounded">
+        className="btn-primary w-full">
           Login
         </button>
 
          <p 
-         className="text-sm text-center">
+         className="text-sm text-center mt-4">
           New user?{" "}
           <Link to="/register" 
-          className="text-blue-600 underline">
+          className="text-teal font-medium">
             Register
           </Link>
         </p>
-
+        </div>
       </div>
     </div>
   )

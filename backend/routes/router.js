@@ -24,7 +24,7 @@ router.post("/accounts/add",authMiddleware, addAccount);
 router.get("/accounts/me",authMiddleware, getMyAccount);
 
 
-router.post("/loanapp/", uploadLoanDocs,createLoanApplication);
+router.post("/loanapp/add", uploadLoanDocs,createLoanApplication);
 router.get("/loanapp/", getApplication);
 router.get('/loanapp/:id',reviewApplication);
 router.patch('/loanapp/:id',updateApplication);
@@ -44,3 +44,7 @@ export default router;
 // accounts
 // http://localhost:3000/api/accounts/add
 // http://localhost:3000/api/accounts/me
+
+
+// http://localhost:3000/api/loanapp/add
+// http://localhost:3000/api/loanapp/

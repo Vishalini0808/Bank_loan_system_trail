@@ -21,7 +21,6 @@ connectDB();
 
 app.use("/api",routerPage);
 
-// app.use("/api/banks", bankRoutee);
 
 
 const PORT = process.env.PORT

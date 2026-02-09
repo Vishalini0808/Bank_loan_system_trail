@@ -50,10 +50,9 @@ export const addAccount = async (req, res) => {
 
 export const getMyAccount = async (req, res) => {
   try {
-    const account = await Account.findOne({ customer: req.user.id })
+    const account = await Account.findOne({ customer: req.User.id })
 
       .populate("branch", "branchName ifscCode city");
-
     if (!account) {
       return res.status(404).json({
         message: "No bank account found. Please add account to apply for loan",

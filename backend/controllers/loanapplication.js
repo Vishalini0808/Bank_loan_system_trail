@@ -18,6 +18,9 @@ export const createLoanApplication = async (req, res) => {
     }
 };
  
+
+
+// employee dashboard
 export const getApplication = async (req, res) => {
     try {
         const applications = await getAllApplications();
@@ -42,6 +45,8 @@ export const reviewApplication = async (req, res) => {
     }
 };
  
+
+//  employee
 export const updateApplication = async (req, res) => {
     try {
         const { id } = req.params;

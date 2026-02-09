@@ -1,10 +1,32 @@
 @import "tailwindcss";
 @reference "tailwindcss/theme";
 
+/* INPUT */
 .input {
-  @apply w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500;
+  @apply w-full border border-gray-300 rounded-xl px-4 py-3
+  focus:outline-none focus:ring-2;
+  --tw-ring-color: #45A994; /* teal */
 }
 
+/* PRIMARY BUTTON */
 .btn-primary {
-  @apply bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition;
+  background-color: #45A994; /* teal */
+  color: white;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #288D8A; /* blueteal */
+}
+
+/* CARD */
+.card {
+  @apply bg-white rounded-2xl shadow transition;
+}
+
+.card:hover {
+  @apply shadow-lg;
 }

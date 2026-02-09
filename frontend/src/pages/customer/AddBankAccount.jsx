@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const AddBankAccount = () => {
-  const [banks, setBanks] = useState([]);
   const [branches, setBranches] = useState([]);
 
   const [form, setForm] = useState({
-    bankId: "",
+    
     branchId: "",
     accountNumber: "",
     accountType: "SAVINGS",
@@ -14,20 +13,23 @@ const AddBankAccount = () => {
 
   const token = localStorage.getItem("token");
 
-  // fetch banks
-  useEffect(() => {
-    axios.get("http://localhost:5000/api/banks")
-      .then(res => setBanks(res.data));
-  }, []);
-
+  
   // fetch branches when bank changes
   useEffect(() => {
-    if (form.bankId) {
+     
       axios
-        .get(`http://localhost:5000/api/branches/${form.bankId}`)
-        .then(res => setBranches(res.data));
-    }
-  }, [form.bankId]);
+        .get(`http://localhost:3000/api/branches` , {
+        headers : {
+          Authorization : `Bearer ${token}`
+        },
+        })
+        .then((res) => {
+          setBranches(res.data);
+        })
+        .catch((err)=> {
+          console.error(err);
+        })
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -37,7 +39,7 @@ const AddBankAccount = () => {
     e.preventDefault();
 
     await axios.post(
-      "http://localhost:5000/api/accounts/add",
+      "http://localhost:3000/api/accounts/add",
       form,
       {
         headers: {
@@ -46,8 +48,10 @@ const AddBankAccount = () => {
       }
     );
 
-    alert("Bank account added successfully");
+    alert("Account added successfully");
   };
+
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -57,20 +61,6 @@ const AddBankAccount = () => {
       >
         <h2 className="text-xl font-bold mb-4">Add Bank Account</h2>
 
-        {/* Bank */}
-        <select
-          name="bankId"
-          className="input"
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Bank</option>
-          {banks.map(bank => (
-            <option key={bank._id} value={bank._id}>
-              {bank.bankName}
-            </option>
-          ))}
-        </select>
 
         {/* Branch */}
         <select
