@@ -11,11 +11,7 @@ const branchSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
-    bank : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "Bank",
-        required : true,
-    },
+    
 });
 
 export default mongoose.model("Branch",branchSchema);

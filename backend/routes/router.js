@@ -2,8 +2,12 @@ import express from "express";
 import userRegister from "../controllers/userRegisterController.js"
 import userLogin from "../controllers/userLoginController.js"
 
-import createBank, { getAllBanks } from "../controllers/bankcontroller.js"
 import { addAccount, getMyAccount } from "../controllers/accountController.js";
+import { createBranch } from "../controllers/branchController.js";
+import authMiddleware from "../middleware/authMiddleware.js";
+import { getBranches } from "../controllers/getAllBranchesController.js";
+import { uploadLoanDocs } from "../middleware/filemiddleware.js";
+import { createLoanApplication, getApplication, reviewApplication, updateApplication } from "../controllers/loanapplication.js";
 
 
 const router = express.Router();
@@ -12,18 +16,31 @@ router.post("/authreg/register",userRegister);
 router.post("/authlog/login",userLogin);
 
 
-router.post("/create", createBank);   //admin
-router.get("/", getAllBanks);        //customer
+router.post("/branch/create",authMiddleware, createBranch);
+router.get ("/branches",authMiddleware, getBranches)
 
-router.post("/add",addAccount);
-router.get("/me",getMyAccount);
 
+router.post("/accounts/add",authMiddleware, addAccount);
+router.get("/accounts/me",authMiddleware, getMyAccount);
+
+
+router.post("/loanapp/", uploadLoanDocs,createLoanApplication);
+router.get("/loanapp/", getApplication);
+router.get('/loanapp/:id',reviewApplication);
+router.patch('/loanapp/:id',updateApplication);
 
 export default router;
 
 
+// authentication
 // POST http://localhost:3000/api/authreg/register
 // POST http://localhost:3000/api/authlog/login
 
-// POST http://localhost:5000/api/banks/create
-//  GET http://localhost:5000/api/banks/
+// branchs
+// http://localhost:3000/api/branch/create    //admin
+// http://localhost:3000/api/branches
+
+
+// accounts
+// http://localhost:3000/api/accounts/add
+// http://localhost:3000/api/accounts/me

@@ -1,4 +1,3 @@
-import Bank from "../models/bankSchema.js";
 import Branch from "../models/branchSchema.js";
 import Account from "../models/accountSchema.js";
 
@@ -7,44 +6,32 @@ import Account from "../models/accountSchema.js";
 export const addAccount = async (req, res) => {
 
     try {
-        const customerId = req.user.id;
-        const {  bankId, branchId, accountNumber, accountType } = req.body;
-
-        // validate bank - chechk bank
-        const bank = await Bank.findById(bankId);
-        if (!bank) {
-            return res.status(400).json({
-                message : "Bank not found"
-            });
-        }
+        const customerId = req.User.id;
+        const { branchId, accountNumber, accountType } = req.body;
 
           //  validate branch - which is belongs to bank
-        const branch = await Branch.findOne({
-            _id: branchId,
-            bank : bankId,
-        });
+        const branch = await Branch.findById( branchId );
 
         if(!branch){
             return res.status(400).json({
-                messsage : "invalid branch for the selected bank",
+                messsage : "branch not found",
             });
         }
-
 
 
         // save account
         const account = await Account.create({
 
             customer : customerId,
-            bank : bankId,
             branch : branchId,
             accountNumber,
             accountType,
+
         });
         
         // response
         res.status(201).json({
-            message : "Bank account verified and added successfully",
+            message : "Account created successfully",
         });
 
 
@@ -64,9 +51,7 @@ export const addAccount = async (req, res) => {
 export const getMyAccount = async (req, res) => {
   try {
     const account = await Account.findOne({ customer: req.user.id })
-      .populate("bank", "bankName")
 
-      
       .populate("branch", "branchName ifscCode city");
 
     if (!account) {

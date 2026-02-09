@@ -9,11 +9,6 @@ const accountSchema = new mongoose.Schema({
         ref : "User",
         required : true,
     },
-    bank : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "Bank",
-        required : true,
-    },
     branch : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "Branch",

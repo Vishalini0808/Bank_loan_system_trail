@@ -1,4 +1,3 @@
-import Bank from "../models/bankSchema.js"
 import Branch from "../models/branchSchema.js"
 
 // create Branch
@@ -8,24 +7,21 @@ export const createBranch = async (req, res) => {
     try {
 
         // destructure from body 
-        const { branchName, city,ifscCode, bankId } = req.body;
+        const { branchName, city,ifscCode } = req.body;
 
-        // bank exist ah nu paakurom
-        const bank = await Bank.findById(bankId);
-        if (!bank) {
-            return res.status(404).json({
-                message : "Bank not found"
-            })
-            
+        const existingBranch = await Branch.findOne({ ifscCode});
+        if(existingBranch) {
+            return res.status(400).json({
+                message : "Branch with this IFSC already exists",
+            });
         }
 
-        // if bank found na create branch 
+       
         const branch = await Branch.create({
             
             branchName,
             city,
             ifscCode,
-            bank : bankId
         });
 
         res.status(201).json({

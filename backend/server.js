@@ -35,6 +35,6 @@ app.listen(PORT,()=>{
 //endpoints:
 // POST http://localhost:3000/api/authreg/register
 // POST http://localhost:3000/api/authlog/login
-// http://localhost:3000
+// http://localhost:3000/api
 // GET http://localhost:5000/api/banks/
 // POST http://localhost:5000/api/banks/create
