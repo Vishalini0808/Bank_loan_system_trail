@@ -1,10 +1,8 @@
 import express from "express";
 import connectDB from "./config/db.js";
 import dotenv from "dotenv";
-import authRegister from "./routes/userRegisterRoute.js"
-import authLogin from "./routes/userLoginRoute.js"
+import routerPage from "./routes/router.js"
 import cors from "cors";
-
 
 // const express = require ('express');
 // const connectDB = require('./config/db');
@@ -20,8 +18,11 @@ app.use(cors());
 connectDB();
 
 //route api
-app.use("/api/authreg",authRegister);
-app.use("/api/authlog",authLogin);
+
+app.use("/api",routerPage);
+
+// app.use("/api/banks", bankRoutee);
+
 
 const PORT = process.env.PORT
 
@@ -35,3 +36,5 @@ app.listen(PORT,()=>{
 // POST http://localhost:3000/api/authreg/register
 // POST http://localhost:3000/api/authlog/login
 // http://localhost:3000
+// GET http://localhost:5000/api/banks/
+// POST http://localhost:5000/api/banks/create
