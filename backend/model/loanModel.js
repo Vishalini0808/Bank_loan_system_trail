@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const schema =  new mongoose.Schema({
+    loanApplicationId : {type:mongoose.Schema.ObjectId,ref:"LoanApplication",required:true},
     name : {type:String,required:true},
     account_number : {type:String,required:true},
     SanctionedAmount : {type:Number,required:true},
@@ -9,4 +10,4 @@ const schema =  new mongoose.Schema({
     branch : {type:String,required:true},
 });
 
-export default mongoose.model('EmiSchema',schema);
+export default mongoose.model('Loan',schema);

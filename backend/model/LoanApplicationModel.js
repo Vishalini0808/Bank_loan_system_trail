@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+ 
 const schema =  new mongoose.Schema({
     name : {type:String,required:true},
     phone : {type:String,required:true},
@@ -9,7 +9,10 @@ const schema =  new mongoose.Schema({
     branch : {type:String,required:true},
     address : {type:String,required:true},
     requested_amount : {type:String,required:true},
-    status : {type:String,required:true}
+    status : {type:String,enum: ["PENDING", "APPROVED", "REJECTED"],default:"PENDING"},
+    documents:{
+        proof : String,
+    }
 });
-
-export default mongoose.model('AccountCreationSchema',schema);
+ 
+export default mongoose.model('LoanApplicationCreationSchema',schema);

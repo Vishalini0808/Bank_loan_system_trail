@@ -9,4 +9,3 @@ router.get('/:id',reviewApplication);
 router.patch('/:id',updateApplication);
 
 export default router;
- 
