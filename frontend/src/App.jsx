@@ -3,11 +3,9 @@ import Login from "./pages/auth/Login"
 import Register from "./pages/auth/Register"
 import CustomerDashboard from "./pages/customer/Dashboard"
 import EmployeeDashboard from "./pages/employee/Dashboard"
-// import ProtectedRoute from "./pages/routes/ProtectedRoutes"
-import ApplyLoan from "./pages/customer/ApplyLoan"
 import LoanApplicationForm from "./pages/customer/LoanApplicationForm"
 import AddBankAccount from "./pages/customer/addBankAccount"
-// import AppRoutes from "./pages/routes/AppRoutes"
+import LoanView from "./pages/employee/LoanReview"
 
 function App() {
   
@@ -15,25 +13,16 @@ function App() {
   return (
    <BrowserRouter>
          <Routes>
-
-             {/* Default route also login only  */}
+            
              <Route path="/" element={<Login />} />
              <Route path="/login" element = {<Login/>}/>
              <Route path="/register" element={<Register />} />
-
-             
 
              <Route 
              path="/customer/dashboard" 
              element={ 
                <CustomerDashboard /> 
               } />
-
-             <Route 
-             path="/customer/apply-loan" 
-             element={
-              <ApplyLoan />
-             } />
 
              <Route
              path="/customer/add-account"
@@ -47,15 +36,17 @@ function App() {
               <LoanApplicationForm />
              }/>
 
-
              <Route 
              path="/employee/dashboard" 
              element={ 
               <EmployeeDashboard/> 
             } />
 
-
-
+            <Route 
+             path="/employee/applications/:id" 
+             element={ 
+              <LoanView/> 
+            } />
 
          </Routes>       
          </BrowserRouter>

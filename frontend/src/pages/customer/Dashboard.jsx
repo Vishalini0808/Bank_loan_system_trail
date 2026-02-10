@@ -49,7 +49,7 @@ const CustomerDashboard = () => {
 
       <div className="min-h-screen bg-gray-50 flex flex-col">
         {/* Horizontal Banner */}
-        <div className="relative h-48 bg-linear-to-r from-teal-600 to-blue-600 overflow-hidden">
+        <div className="relative h-48 bg-gradient-to-r from-teal-600 to-blue-600 overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url('${bannerImageUrl}')` }}
@@ -156,14 +156,16 @@ const CustomerDashboard = () => {
 
             {account && (
               <div className="space-y-6">
-                
+                {/* Balance Card */}
                 <div className="bg-linear-to-r from-teal-50 to-blue-50 rounded-lg p-5 border border-teal-100">
-                  {/* <div className="flex items-center mt-4"> */}
+                  <p className="text-sm text-gray-600 mb-2">Account Balance</p>
+                  <p className="text-3xl font-bold text-gray-800">₹{account.balance}</p>
+                  <div className="flex items-center mt-4">
                     <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full mr-3">
                       Active
                     </span>
                     <span className="text-sm text-gray-600">{account.accountType} Account</span>
-                  {/* </div> */}
+                  </div>
                 </div>
 
                 {/* Account Details */}

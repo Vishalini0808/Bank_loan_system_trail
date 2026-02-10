@@ -39,12 +39,12 @@ const CustomerNavbar = () => {
         >
           Add Account
         </Link>
-        <Link 
+        {/* <Link 
           to="/customer/apply-loan" 
           className="text-gray-700 hover:text-teal-600 font-medium transition-colors"
         >
           Apply Loan
-        </Link>
+        </Link> */}
         <button
           onClick={logout}
           className="bg-linear-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-5 py-2 rounded-md font-medium transition-colors shadow-sm hover:shadow-md"
