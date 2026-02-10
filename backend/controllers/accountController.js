@@ -7,7 +7,7 @@ export const addAccount = async (req, res) => {
 
     try {
         const customerId = req.User.id;
-        const { branchId, accountNumber, accountType } = req.body;
+        const { branchId, accountHolderName, accountNumber, accountType } = req.body;
 
           //  validate branch - which is belongs to bank
         const branch = await Branch.findById( branchId );
@@ -24,6 +24,7 @@ export const addAccount = async (req, res) => {
 
             customer : customerId,
             branch : branchId,
+            accountHolderName,
             accountNumber,
             accountType,
 

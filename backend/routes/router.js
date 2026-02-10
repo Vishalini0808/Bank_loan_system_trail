@@ -1,7 +1,8 @@
 import express from "express";
+import multer from "multer";
+
 import userRegister from "../controllers/userRegisterController.js"
 import userLogin from "../controllers/userLoginController.js"
-
 import { addAccount, getMyAccount } from "../controllers/accountController.js";
 import { createBranch } from "../controllers/branchController.js";
 import authMiddleware from "../middleware/authMiddleware.js";

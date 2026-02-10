@@ -14,6 +14,10 @@ const accountSchema = new mongoose.Schema({
         ref : "Branch",
         required : true,
     },
+    accountHolderName: {
+        type : String,
+        required : true,
+    },
     accountNumber : {
         type : String,
         required : true,
