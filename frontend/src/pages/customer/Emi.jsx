@@ -60,7 +60,7 @@ console.log(res.data);
                 <th className="px-6 py-3 text-left text-sm font-medium">EMI Amount</th>
                 <th className="px-6 py-3 text-left text-sm font-medium">Due Date</th>
                 <th className="px-6 py-3 text-left text-sm font-medium">Status</th>
-                <th className="px-6 py-3 text-left text-sm font-medium">Loan ID</th>
+                <th className="px-6 py-3 text-left text-sm font-medium">Penalty</th>
                 <th className="px-6 py-3 text-left text-sm font-medium">Action</th>
               </tr>
             </thead>
@@ -69,11 +69,11 @@ console.log(res.data);
               {emis.map((emi) => (
                 <tr key={emi._id}>
                   <td className="px-6 py-4 font-semibold">
-                    ₹{emi.EMIAmount}
+                    ₹{emi.totalAmout.toFixed(2)}
                   </td>
 
                   <td className="px-6 py-4">
-                    {new Date(emi.DueDate).toLocaleDateString()}
+                    {new Date(emi.dueDate).toLocaleDateString()}
                   </td>
 
                   <td className="px-6 py-4">
@@ -84,12 +84,12 @@ console.log(res.data);
                           : "bg-yellow-500"
                         }`}
                     >
-                      {emi.EMIStatus}
+                      {emi.status}
                     </span>
                   </td>
 
                   <td className="px-6 py-4 text-gray-700">
-                    {emi.Loan_ID}
+                    {emi.penalty}
                   </td>
 
                   <td className="px-6 py-4">

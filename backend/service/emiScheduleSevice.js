@@ -61,12 +61,12 @@ export const getEmiService = async(loanId)=>{
     console.log(loan._id)
     console.log("emis")
     console.log(emis);
-    return emis.map((emi)=>{
-        if(emi.status==="PENDING")
-        {
-            const penalty = calculatePenalty(emi.dueDate,emi.totalAmout);
-            console.log(penalty);
-            return {...emi.toObject(),penalyAmount:penalty};
-        }return emi
-    })
+    // return emis.map((emi)=>{
+    //     if(emi.status==="PENDING")
+    //     {
+    //         const penalty = calculatePenalty(emi.dueDate,emi.totalAmout);
+    //         return {...emi.toObject(),penalyAmount:penalty};
+    //     }return emi
+    // })
+    return emis;
 }
