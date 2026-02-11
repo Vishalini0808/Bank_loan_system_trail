@@ -38,7 +38,7 @@ function LoanView() {
     fetchLoan();
   }, [id]);
  
-  // ✅ APPROVE / REJECT HANDLER
+ 
   const updateStatus = async (status) => {
     try {
       setActionLoading(true);
@@ -138,7 +138,7 @@ function LoanView() {
 
         </form>
  
-        {/* ✅ ACTION BUTTONS */}
+        
         {loan.status === "PENDING" && (
           <div className="flex gap-4 mt-6">
             <button

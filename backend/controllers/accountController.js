@@ -9,7 +9,7 @@ export const addAccount = async (req, res) => {
         const customerId = req.User.id;
         const { branchId, accountNumber, accountType } = req.body;
 
-          //  validate branch - which is belongs to bank
+          //  validate branch 
         const branch = await Branch.findById( branchId );
 
         if(!branch){

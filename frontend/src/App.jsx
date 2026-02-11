@@ -53,6 +53,8 @@ function App() {
               <EmployeeDashboard/> 
             } />
 
+            
+
             <Route 
              path="/employee/applications/:id" 
              element={ 

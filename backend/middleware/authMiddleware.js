@@ -14,12 +14,12 @@ const authMiddleware = async (req, res, next) => {
     }
 
     // verify token
-    const decoded = jwt.verify(token, "SECRET_KEY");
+    const decoded = jwt.verify(token, "SECRET_KEY_123");   //verfy - payload return pannum
 
     // attach decoded data to request 
     req.User = decoded;
     // allow th request
-    next();
+    next();              //handler ku moves pannum
 
 
   } catch (error) {

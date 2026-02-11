@@ -20,6 +20,7 @@ export const getApplicationByUserId = async (id) => {
     return await LoanApplicationModel.find({user:id});
 };
  
+
  
 export const updateApplicationStatus = async (id, loanData) => {
     const status =loanData.status;

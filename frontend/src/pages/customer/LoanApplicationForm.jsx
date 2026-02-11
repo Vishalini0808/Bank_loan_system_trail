@@ -1,7 +1,10 @@
 import { useState } from "react";
 import CustomerNavbar from "./CustomerNavbar";
+import { useNavigate } from "react-router-dom";
 
 const LoanApplicationForm = () => {
+const navigate = useNavigate();
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -48,6 +51,9 @@ const LoanApplicationForm = () => {
       if (!res.ok) throw new Error(data.message);
 
       alert("Loan application submitted successfully ");
+      
+      navigate("/customer/dashboard");
+      
 
       // reset form
       setForm({

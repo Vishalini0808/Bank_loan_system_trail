@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 const AddBankAccount = () => {
   const navigate = useNavigate();
+
   const [branches, setBranches] = useState([]);
 
   const [form, setForm] = useState({
+
     branchId: "",
     accountHolderName: "",
     accountNumber: "",
@@ -17,8 +19,7 @@ const AddBankAccount = () => {
 
   // fetch branches when bank changes
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/branches`, {
+    axios.get(`http://localhost:3000/api/branches`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -51,7 +52,7 @@ const AddBankAccount = () => {
 
       alert(res.data.message || "Account added successfully");
 
-      navigate("/dashboard");
+      navigate("/customer/dashboard");
 
       setForm({
         branchId: "",
@@ -78,7 +79,7 @@ const AddBankAccount = () => {
 
         <form onSubmit={handleSubmit} className="p-6">
           <div className="space-y-4">
-            {/* Branch Selection */}
+           
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Select Branch

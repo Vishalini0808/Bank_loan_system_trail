@@ -29,11 +29,14 @@ const CustomerDashboard = () => {
         }
 
         const data = await res.json();
-        setAccount(data);
+        setAccount(data);                   // account data updates
+
       } catch (err) {
         setError(err.message);
+
       } finally {
         setLoading(false);
+
       }
     };
 
@@ -65,11 +68,11 @@ const CustomerDashboard = () => {
           </div>
         </div>
 
-        {/* Main Content */}
+        {/* Content */}
         <div className="max-w-6xl mx-auto px-4 py-8 grow">
-          {/* 3 Cards Grid */}
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {/* Add Account card */}
+            {/* Account card */}
             <Link 
               to="/customer/add-account" 
               className="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg hover:border-teal-300 transition-all duration-300"
@@ -85,7 +88,7 @@ const CustomerDashboard = () => {
               </div>
             </Link>
 
-            {/* Card 2: Apply Loan */}
+            {/* Apply Loan card */}
             <Link 
               to="/customer/loan-form" 
               className="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg hover:border-teal-300 transition-all duration-300"
@@ -101,7 +104,7 @@ const CustomerDashboard = () => {
               </div>
             </Link>
 
-            {/* Card 3: Loan Status */}
+            {/*  Loan Status card */}
             <Link 
               to="/customer/loan-status" 
               className="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg hover:border-teal-300 transition-all duration-300"
@@ -118,7 +121,7 @@ const CustomerDashboard = () => {
             </Link>
           </div>
 
-          {/* Account Info Section */}
+          {/* Account Info */}
           <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-gray-800">Account Information</h2>
