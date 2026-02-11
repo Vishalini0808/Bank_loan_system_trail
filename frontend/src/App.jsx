@@ -7,7 +7,8 @@ import LoanApplicationForm from "./pages/customer/LoanApplicationForm"
 import AddBankAccount from "./pages/customer/addBankAccount"
 import LoanView from "./pages/employee/LoanReview"
 import LoanStatus from "./pages/customer/loanStatus"
-import Emi from "./pages/customer/Emi"
+import Emi from "./pages/customer/Emi" 
+import Pay from "./pages/customer/Pay"
 function App() {
   
   
@@ -47,6 +48,12 @@ function App() {
              element={
               <Emi />
              }/>
+            <Route 
+             path="/customer/pay/:id" 
+             element={ 
+              <Pay/> 
+            } />
+
              <Route 
              path="/employee/dashboard" 
              element={ 

@@ -30,37 +30,40 @@ export const generateInterestSchedule = (interestRate,amount,tenureMonths,loanid
 export const  calculatePenalty =(duedate,emiAmount)=>{
     const rate=1;
     const  today = new Date();
-    if(today <= dueDate)return 0;
+    if(today <= duedate)return 0;
     const lateDays = Math.ceil ((today-duedate)/(1000*60*60*24));
     return Number (((emiAmount*rate*lateDays)/100).toFixed(2));
 }
 
 
-export const payEmiService= async (loanId)=>{
-    const emi= await loanModel.find({loanApplicationId:loanId});
-    console.log(emi);
+export const payEmiService= async (EmiId)=>{
+    const emi= await EMI.findById(EmiId);
     if(!emi)throw new Error ("Emi not found");
-    const  penalty = calculatePenalty(emi.dueDate,emi.totalAmout);
-    emi.penalty = penalty;
-    emi.status="PAID",
-    emi.paidDate = new Date();
-    await emi.save(emi);
+    emi.status="PAID";
+    await emi.save();
     return {
-        totalPaid: emi.totalAmout+penalty,
-        penalty
+        totalPaid: emi.totalAmout+emi.penalty,
     };
 };
 
-export const getEmiService = async(loanId)=>{
-    console.log(loanId);
-    
+export const getEmiService = async(loanId)=>{    
     const loan= await loanModel.findOne({loanApplicationId:loanId});
-    console.log(loan._id)
-    console.log("loann")
     const emis = await EMI.find({loanId:loan._id})
-    console.log(loan._id)
-    console.log("emis")
-    console.log(emis);
+    // return emis.map((emi)=>{
+    //     if(emi.status==="PENDING")
+    //     {
+    //         const penalty = calculatePenalty(emi.dueDate,emi.totalAmout);
+    //         return {...emi.toObject(),penalyAmount:penalty};
+    //     }return emi
+    // })
+    return emis;
+}
+
+export const getOneEmiService = async(EmiId)=>{
+    const emis = await EMI.findById(EmiId);
+      if (!emis) throw new Error("EMI_NOT_FOUND");
+    const  penalty = calculatePenalty(emis.dueDate,emis.totalAmout);
+    emis.penalty = penalty;
     // return emis.map((emi)=>{
     //     if(emi.status==="PENDING")
     //     {

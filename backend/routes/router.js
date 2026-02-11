@@ -1,14 +1,13 @@
 import express from "express";
-import userRegister from "../controllers/userRegisterController.js"
-import userLogin from "../controllers/userLoginController.js"
-
+import userRegister from "../controllers/userRegisterController.js";
+import userLogin from "../controllers/userLoginController.js";
 import { addAccount, getMyAccount } from "../controllers/accountController.js";
 import { createBranch } from "../controllers/branchController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import { getBranches } from "../controllers/getAllBranchesController.js";
 import { uploadLoanDocs } from "../middleware/filemiddleware.js";
 import { createLoanApplication, getApplication, reviewApplication, updateApplication , LoanStatus} from "../controllers/loanapplication.js";
-import { getEmi,payEmi } from "../controllers/emiController.js";
+import { getEmi,getOneEmi,payEmi } from "../controllers/emiController.js";
 
 const router = express.Router();
 
@@ -30,8 +29,9 @@ router.get("/loanapp/me",authMiddleware,LoanStatus);
 router.get('/loanapp/:id',reviewApplication);
 router.put('/loanapp/:id',updateApplication);
 
-router.get("/loan/:loanId",getEmi)
-router.post("/pay/:emiId",payEmi);
+router.get("/loan/:loanId",getEmi);
+router.get("/pay/:emiId",getOneEmi)
+router.put("/pay/:emiId",payEmi);
 
 export default router;
 

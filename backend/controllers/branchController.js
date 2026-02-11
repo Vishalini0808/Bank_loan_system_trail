@@ -18,7 +18,6 @@ export const createBranch = async (req, res) => {
 
        
         const branch = await Branch.create({
-            
             branchName,
             city,
             ifscCode,

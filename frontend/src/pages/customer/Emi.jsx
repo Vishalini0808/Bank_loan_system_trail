@@ -11,32 +11,20 @@ export default function Emi() {
 
   const fetchEmis = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/loan/${id}`);
-     
-console.log(res.data);
+      const res = await axios.get(`http://localhost:3000/api/loan/${id}`);     
       setEmis(res.data.data || res.data);
       setEmiCount(res.data.count || res.data.length);
-      
     } catch (err) {
       setError("Failed to fetch EMI details");
     } finally {
       setLoading(false);
     }
   };
-
-  
   useEffect(() => {
     fetchEmis();
   }, []);
 
-  const handlePayEmi = async (emiId) => {
-    try {
-      await axios.put(`http://localhost:3000/api/pay/${id}`);
-      fetchEmis();
-    } catch (err) {
-      alert("Failed to pay EMI");
-    }
-  };
+
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -94,18 +82,17 @@ console.log(res.data);
                   </td>
 
                   <td className="px-6 py-4">
-                    <button
-                      onClick={() => handlePayEmi(emi._id)}
-                      disabled={emi.EMIStatus === "Paid"}
+                    <a
+                      href={`/customer/pay/${emi._id}`}
                       className={`px-4 py-2 rounded-lg text-white text-sm
                         ${
-                          emi.EMIStatus === "Paid"
+                          emi.status === "PAID"
                             ? "bg-gray-400 cursor-not-allowed"
                             : "bg-blue-600 hover:bg-blue-700"
                         }`}
                     >
                       Pay
-                    </button>
+                    </a>
                   </td>
                 </tr>
               ))}

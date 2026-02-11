@@ -8,4 +8,4 @@ loanEventEmitter.on("loan_created", async(loan)=>{
     const {InterestRate,SanctionedAmount,Duration} = loan;
     const schedule = generateInterestSchedule(InterestRate,SanctionedAmount,Duration,loan._id.toString());
     await EmiModel.insertMany(schedule);
-})
+})  
