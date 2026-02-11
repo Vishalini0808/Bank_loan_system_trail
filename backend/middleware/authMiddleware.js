@@ -18,7 +18,6 @@ const authMiddleware = async (req, res, next) => {
 
     // attach decoded data to request 
     req.User = decoded;
-console.log(decoded)
     // allow th request
     next();
 

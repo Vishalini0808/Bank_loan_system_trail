@@ -11,6 +11,7 @@ export const payEmi = async (req,res)=>{
 
 export const getEmi = async (req,res) => {
     try{
+        console.log("hello")
         const emis = await getEmiService(req.params.loanId);
         res.status(200).json(emis);
     }catch (err){

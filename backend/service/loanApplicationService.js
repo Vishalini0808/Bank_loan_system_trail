@@ -23,36 +23,27 @@ export const getApplicationByUserId = async (id) => {
  
 export const updateApplicationStatus = async (id, loanData) => {
     const status =loanData.status;
-    console.log(status)
     if (!["APPROVED", "REJECTED"].includes(status)) {
         throw new Error("INVALID_STATUS");
     }
- console.log(loanData);
     const application = await LoanApplicationModel.findById(id);
-    console.log(application
-    );
-    
+   
     if (!application) {
         throw new Error("APPLICATION_NOT_FOUND");
     }
     application.status = status;
-    console.log("ji")
     try{
     await application.save();
     }catch(e){
         console.log("failed");
     }
-    console.log("he")
+    
     let loan = null;
  
     if (status === "APPROVED") {
-        console.log("hello")
         if (!loanData) throw new Error("LOAN_DATA_REQUIRED");
-            console.log(application._id);
-        loan = await LoanApplicationModel.findById( application._id.toString() );
-        if(!loan){
-            console.log("hel");
-            
+        // loan = await LoanApplicationModel.findById( application._id.toString() );
+        if(!loan){            
         loan = await loanModel.create({
             loanApplicationId: application._id,
             name: application.name,
@@ -63,9 +54,10 @@ export const updateApplicationStatus = async (id, loanData) => {
             Duration:loanData.duration,
             LoanStatus: "ACTIVE"
         });
+        
     }
         loanEventEmitter.emit("loan_created",loan);
     }
- 
+ console.log(loan);
     return { application, loan };
 };

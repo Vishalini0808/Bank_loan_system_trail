@@ -84,18 +84,22 @@ export default function LoanStatus() {
               </span>
             </p>
 
-            {app.documents?.proof && (
+            {app.status==="APPROVED" && (
               <a
-                href={`/${app.documents.proof}`}
+                href={`/customer/emi/${app._id}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block mt-3 text-sm text-blue-600 underline"
               >
-                View Proof Document
+                emi status
               </a>
             )}
+{console.log(app)}
+           
           </div>
+          
         ))}
+        
       </div>
     </div>
   );

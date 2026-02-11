@@ -1,5 +1,5 @@
 import EMI from "../models/EmiModel.js";
-
+import loanModel from "../models/loanModel.js";
 export const generateInterestSchedule = (interestRate,amount,tenureMonths,loanid) => {
     const R = interestRate;
     const N = tenureMonths;
@@ -37,7 +37,8 @@ export const  calculatePenalty =(duedate,emiAmount)=>{
 
 
 export const payEmiService= async (loanId)=>{
-    const emi= await EMI.findById(loanId);
+    const emi= await loanModel.find({loanApplicationId:loanId});
+    console.log(emi);
     if(!emi)throw new Error ("Emi not found");
     const  penalty = calculatePenalty(emi.dueDate,emi.totalAmout);
     emi.penalty = penalty;
@@ -51,7 +52,14 @@ export const payEmiService= async (loanId)=>{
 };
 
 export const getEmiService = async(loanId)=>{
-    const emis = await EMI.find({loanId});
+    console.log(loanId);
+    
+    const loan= await loanModel.findOne({loanApplicationId:loanId});
+    console.log(loan)
+    console.log("loann")
+    const emis = await EMI.find({loanId:loan._id})
+    console.log(loan._id)
+    console.log("emis")
     return emis.map((emi)=>{
         if(emi.status==="PENDING")
         {

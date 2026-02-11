@@ -30,8 +30,8 @@ router.get("/loanapp/me",authMiddleware,LoanStatus);
 router.get('/loanapp/:id',reviewApplication);
 router.put('/loanapp/:id',updateApplication);
 
-router.get("/loan/:loanId",authMiddleware,getEmi)
-router.post("/pay/:emiId",authMiddleware,payEmi);
+router.get("/loan/:loanId",getEmi)
+router.post("/pay/:emiId",payEmi);
 
 export default router;
 

@@ -21,11 +21,12 @@ export const createLoanApplication = async (req, res) => {
  
 export const LoanStatus = async (req, res) => {
     try {
-        const application = await getApplicationByUserId(req.User.id);
+        const application  = await getApplicationByUserId(req.User.id);
         if (!application) {
             return res.status(404).json({ message: "Application not found" });
         }
         res.json(application);
+        
     } catch (error) {
         res.status(500).json({ message: "Database error" });
     }
