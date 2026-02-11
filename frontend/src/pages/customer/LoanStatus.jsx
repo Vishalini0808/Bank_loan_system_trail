@@ -93,7 +93,7 @@ export default function LoanStatus() {
               >
                 emi status
               </a>
-            )}
+            ) }
 {console.log(app)}
            
           </div>
