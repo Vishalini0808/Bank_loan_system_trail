@@ -7,6 +7,7 @@ const schema =  new mongoose.Schema({
     SanctionedAmount : {type:Number,required:true},
     InterestRate : {type:Number,required:true},
     LoanStatus : {type:String,required: true},
+    Duration :{type:Number,required:true},
     branch : {type:String,required:true},
 });
 

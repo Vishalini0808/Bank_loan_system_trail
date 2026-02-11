@@ -4,6 +4,7 @@ const schema =  new mongoose.Schema({
     name : {type:String,required:true},
     phone : {type:String,required:true},
     email : {type:String,required:true},
+    user :{type:mongoose.Schema.Types.ObjectId,ref:"User",required:true},
     account_number : {type:String,required: true},
     loan_type:{type:String, required:true},
     branch : {type:String,required:true},
@@ -15,4 +16,4 @@ const schema =  new mongoose.Schema({
     }
 });
  
-export default mongoose.model('LoanApplicationCreationSchema',schema);
+export default mongoose.model('LoanApplication',schema);

@@ -1,0 +1,20 @@
+javascript:
+arrow function 
+template literals
+destructuring
+spread/rest
+import export syntax
+default vs named exports
+then/catch/finally to async/await with error handling
+map,filter,reduce,find,some/every
+closures,lexical scoping
+Learn how JS handles async: call stack, web APIs, task queue.
+
+node:
+npm install
+repl,globals like process
+require/module.exports
+fs module
+event-driven programming
+http module
+package management

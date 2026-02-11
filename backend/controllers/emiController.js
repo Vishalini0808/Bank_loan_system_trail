@@ -1,8 +1,8 @@
-import { payEmiService,getEmiService } from "../service/emiScheduleSevice";
+import { payEmiService,getEmiService } from "../service/emiScheduleSevice.js";
 
 export const payEmi = async (req,res)=>{
     try{
-        const result = payEmiService(req.params.emiId);
+        const result = payEmiService(req.params.emiID);
         res.status(200).json({message:"emi paid",...result})
     }catch(error){
         res.status(400).json({error:error.message})

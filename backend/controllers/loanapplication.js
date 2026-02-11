@@ -1,9 +1,10 @@
-import {createApplication,getAllApplications,getApplicationById,updateApplicationStatus} from "../service/loanApplicationService.js"
+import {createApplication,getAllApplications,getApplicationById,updateApplicationStatus, getApplicationByUserId} from "../service/loanApplicationservice.js"
  
 export const createLoanApplication = async (req, res) => {
     try {
         const data = {
             ...req.body,
+            user:req.User.id,
             documents:{
                 proof: req.files?.proof?.[0]?.path ||null,
             },
@@ -15,6 +16,18 @@ export const createLoanApplication = async (req, res) => {
         });
     } catch (error) {
         res.status(500).json({ message: "Database Error" });
+    }
+};
+ 
+export const LoanStatus = async (req, res) => {
+    try {
+        const application = await getApplicationByUserId(req.User.id);
+        if (!application) {
+            return res.status(404).json({ message: "Application not found" });
+        }
+        res.json(application);
+    } catch (error) {
+        res.status(500).json({ message: "Database error" });
     }
 };
  
@@ -50,9 +63,9 @@ export const reviewApplication = async (req, res) => {
 export const updateApplication = async (req, res) => {
     try {
         const { id } = req.params;
-        const { status } = req.body;
+     
  
-        const result = await updateApplicationStatus(id, status, req.body);
+        const result = await updateApplicationStatus(id, req.body);
  
         res.status(200).json({
             message: "Application status updated",

@@ -1,14 +1,13 @@
-import EMI from "../model/EmiModel.js";
+import EMI from "../models/EmiModel.js";
 
-export const generateInterestSchedule = (loan) => {
-    const R = loan.interestRate;
-    const N = loan.tenureMonths;
-    const P = loan.amount;
+export const generateInterestSchedule = (interestRate,amount,tenureMonths,loanid) => {
+    const R = interestRate;
+    const N = tenureMonths;
+    const P = amount;
 
     const emiamount = (P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
     let balance  = P;
     const emis=[];
-
     for(let i =1;i<=N;i++){
         const  interest = balance*R;
         const principal = emiamount - interest;
@@ -16,18 +15,20 @@ export const generateInterestSchedule = (loan) => {
         const duedate = new Date();
         duedate.setMonth(duedate.getMonth()+i);
         emis.push({
-            loanId:loan._id,
+            loanId:loanid,
             principal: principal,
             installementNumber:i,
             dueDate:duedate,
             Interest:interest,
-            totalAmout:emiamount
+            totalAmout:emiamount,
+            status:"PENDING"
         })
     }
  return emis;
 };
 
-export const  calculatePenalty =(duedate,emiAmount,rate=1)=>{
+export const  calculatePenalty =(duedate,emiAmount)=>{
+    const rate=1;
     const  today = new Date();
     if(today <= dueDate)return 0;
     const lateDays = Math.ceil ((today-duedate)/(1000*60*60*24));
