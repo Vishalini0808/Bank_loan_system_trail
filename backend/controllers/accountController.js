@@ -9,7 +9,7 @@ export const addAccount = async (req, res) => {
         const customerId = req.User.id;
         const { branchId, accountHolderName, accountNumber, accountType } = req.body;
 
-          //  validate branch - which is belongs to bank
+          //  validate branch 
         const branch = await Branch.findById( branchId );
 
         if(!branch){
@@ -54,7 +54,7 @@ export const getMyAccount = async (req, res) => {
     const account = await Account.findOne({ customer: req.User.id })
 
       .populate("branch", "branchName ifscCode city");
-    if (!account) {
+    if (!account) { 
       return res.status(404).json({
         message: "No bank account found. Please add account to apply for loan",
       });

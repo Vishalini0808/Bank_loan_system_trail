@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 
 const CustomerDashboard = () => {
   const [account, setAccount] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  
 
   useEffect(() => {
     const fetchAccount = async () => {
@@ -13,9 +12,7 @@ const CustomerDashboard = () => {
         const token = localStorage.getItem("token");
 
         if (!token) {
-          setError("Please login again");
-          setLoading(false);
-          return;
+          return alert("token Invalid");
         }
 
         const res = await fetch("http://localhost:3000/api/accounts/me", {
@@ -24,6 +21,7 @@ const CustomerDashboard = () => {
           },
         });
 
+
         if (!res.ok) {
           throw new Error("Failed to fetch account");
         }
@@ -31,10 +29,8 @@ const CustomerDashboard = () => {
         const data = await res.json();
         setAccount(data);
       } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+        console.error(err);        
+      } 
     };
 
     fetchAccount();
@@ -67,7 +63,7 @@ const CustomerDashboard = () => {
 
         {/* Main Content */}
         <div className="max-w-6xl mx-auto px-4 py-8 grow">
-          {/* 3 Cards Grid */}
+        
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             {/* Add Account card */}
             <Link 
@@ -85,7 +81,7 @@ const CustomerDashboard = () => {
               </div>
             </Link>
 
-            {/* Card 2: Apply Loan */}
+            {/*  Apply Loan */}
             <Link 
               to="/customer/loan-form" 
               className="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg hover:border-teal-300 transition-all duration-300"
@@ -101,7 +97,7 @@ const CustomerDashboard = () => {
               </div>
             </Link>
 
-            {/* Card 3: Loan Status */}
+            {/*  Loan Status */}
             <Link 
               to="/customer/loans" 
               className="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg hover:border-teal-300 transition-all duration-300"
@@ -129,22 +125,12 @@ const CustomerDashboard = () => {
               </div>
             </div>
 
-            {loading && (
-              <div className="text-center py-8">
-                <div className="w-12 h-12 border-4 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                <p className="text-gray-500">Loading...</p>
-              </div>
-            )}
+       
 
-            {error && (
-              <div className="text-center py-8">
-                <p className="text-red-500">{error}</p>
-              </div>
-            )}
-
-            {!loading && !account && !error && (
+            {!account && (
               <div className="text-center py-8">
                 <p className="text-gray-600 mb-4">No account linked yet</p>
+
                 <Link
                   to="/customer/add-account"
                   className="inline-flex items-center px-5 py-2.5 bg-linear-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white font-medium rounded-lg"
@@ -153,6 +139,8 @@ const CustomerDashboard = () => {
                 </Link>
               </div>
             )}
+
+
 
             {account && (
               <div className="space-y-6">

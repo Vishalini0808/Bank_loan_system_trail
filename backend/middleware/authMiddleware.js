@@ -4,7 +4,7 @@ import User from "../models/userSchema.js";
 const authMiddleware = async (req, res, next) => {
   try {
     
-    // token get from headers
+    // token get from headers - extract only token except bearer
     const token = req.headers.authorization?.split (" ")[1];
 
     if (!token){

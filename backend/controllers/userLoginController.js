@@ -21,6 +21,7 @@ const login = async (req, res) => {
         message : "Invalid password"
         })
 
+        // generate token
         const token = jwt.sign(
             {id : regUser._id, role : regUser.role},
             "SECRET_KEY",
