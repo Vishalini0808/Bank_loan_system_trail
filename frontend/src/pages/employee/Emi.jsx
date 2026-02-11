@@ -23,7 +23,7 @@ export default function Emi() {
     fetchEmis();
   }, []);
 
-  // ✅ PAY EMI
+  // PAY EMI
   const handlePayEmi = async (emiId) => {
     try {
       await axios.put(`http://localhost:3000/api/emis/${emiId}/pay`);
@@ -89,7 +89,7 @@ export default function Emi() {
                     {emi.Loan_ID}
                   </td>
 
-                  {/* ✅ PAY BUTTON */}
+                  {/*  PAY BUTTON */}
                   <td className="px-6 py-4">
                     <button
                       onClick={() => handlePayEmi(emi._id)}

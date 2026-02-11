@@ -31,7 +31,7 @@ function LoanView() {
     fetchLoan();
   }, [id]);
 
-  // ✅ APPROVE / REJECT HANDLER
+  //  APPROVE / REJECT HANDLER
   const updateStatus = async (status) => {
     try {
       setActionLoading(true);
@@ -73,7 +73,7 @@ function LoanView() {
           Loan Details (Employee View)
         </h2>
 
-        {/* FORM (READ ONLY) */}
+        {/* FORM READ ONLY*/}
         <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
           <Input label="Name" value={loan.name} />
@@ -97,7 +97,7 @@ function LoanView() {
           </div>
         </form>
 
-        {/* ✅ ACTION BUTTONS */}
+        {/*  ACTION BUTTONS */}
         {loan.status === "PENDING" && (
           <div className="flex gap-4 mt-6">
             <button
